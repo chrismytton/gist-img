@@ -17,6 +17,7 @@ decode_gist() {
   curl -fsSL "https://gist.github.com/raw/$1/gistfile1" | base64 -D
 }
 
+# Given a path to an image, base64 encode it and gist it.
 encode_image() {
   base64 < $1 | gist -p -
 }
