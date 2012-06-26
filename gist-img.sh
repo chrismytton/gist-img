@@ -17,6 +17,10 @@ decode_gist() {
   curl -fsSL "https://gist.github.com/raw/$1/gistfile1" | base64 -D
 }
 
+encode_image() {
+  base64 < $1 | gist -p -
+}
+
 if [ -f $1 ]; then
   # The user has provided a file, convert it and gist it.
   file=$1
@@ -24,7 +28,7 @@ if [ -f $1 ]; then
     echo "gist-img only works with pngs right now"
     exit 1
   fi
-  base64 < $file | gist -p -
+  encode_image "$file"
 else
   # The user is requesting a gist id.
   if [ -t 1 ]; then
