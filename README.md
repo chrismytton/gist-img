@@ -33,7 +33,7 @@ command with the gist id (the last bit of the url) that you want to get back.
 
 ## Known limitations
 
-* Can only hand files less than ~50k
+* Can only handle files less than ~50k
 * Only handles png files
 
 ## License
