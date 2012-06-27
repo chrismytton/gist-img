@@ -12,7 +12,6 @@ Store images in gists.
 in base64 and uploads it to [gist](https://gist.github.com) using
 the `gist(1)` commands line utility.
 
-    $ brew install gist
     $ brew install --HEAD https://github.com/hecticjeff/gist-img/raw/master/extras/gist-img.rb
 
 ## Usage
