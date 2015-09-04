@@ -4,7 +4,7 @@
 set -e
 
 # Check the user has `gist(1)` installed.
-[ `command -v gist` ] || (echo "gist-img: Please 'brew install gist'" && exit 1)
+[ "`command -v gist`" ] || (echo "gist-img: Please 'brew install gist'" && exit 1)
 
 # Show usage if no arguments are given.
 if [ "$#" = "0" ]; then
@@ -19,13 +19,13 @@ decode_gist() {
 
 # Given a path to an image, base64 encode it and gist it.
 encode_image() {
-  base64 < $1 | gist -p -
+  base64 < "$1" | gist -p -
 }
 
-if [ -f $1 ]; then
+if [ -f "$1" ]; then
   # The user has provided a file, convert it and gist it.
-  file=$1
-  if [ `file --mime-type -b $file` != 'image/png' ]; then
+  file="$1"
+  if [ "`file --mime-type -b \"$file\"`" != 'image/png' ]; then
     echo "gist-img only works with pngs right now"
     exit 1
   fi
@@ -34,10 +34,10 @@ else
   # The user is requesting a gist id.
   if [ -t 1 ]; then
     # STDOUT is a tty, write the image to a file.
-    decode_gist $1 > gist-img.png
+    decode_gist "$1" > gist-img.png
     echo "Written to gist-img.png"
   else
     # STDOUT is something else, give it the raw image data.
-    decode_gist $1
+    decode_gist "$1"
   fi
 fi
